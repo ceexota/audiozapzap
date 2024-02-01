@@ -13,11 +13,6 @@ audio.volume = 1.0; // Ajuste conforme necessário
 const btnPlayToggle = audioPlayer.querySelector(".btn-play");
 const slider = audioPlayer.querySelector("input[type='range']");
 
-function setMessageDate() {
-    currentDateTime = new Date().toISOString().substring(11, 16);
-    audioPlayer.style.setProperty("--player-current-date-time", `'${currentDateTime}'`);
-}
-
 function formatTimeToDisplay(seconds) {
     const milliseconds = seconds * 1000;
     return new Date(milliseconds).toISOString().substring(14, 19);
@@ -61,10 +56,6 @@ function start() {
     btnPlayToggle.onclick = handlePlayButton;
     slider.oninput = handleSlider;
 
-    audio.onloadstart = () => {
-        setMessageDate();
-        audioPlayer.classList.add("loading");
-    };
     audio.onplay = () => {
         audioPlayer.classList.add("playing");
         btnPlayToggle.textContent = 'Pause'; // Atualiza o texto do botão para 'Pause' quando o áudio começa a tocar
@@ -74,15 +65,9 @@ function start() {
         btnPlayToggle.textContent = 'Play'; // Atualiza o texto do botão para 'Play' quando o áudio é pausado
     };
     audio.onloadeddata = () => {
+        // Show play button immediately upon audio data load
         audioPlayer.classList.remove("loading");
-        // Tenta iniciar a reprodução automática quando os dados do áudio são carregados
-        audio.play().catch(error => {
-            console.error('Erro na reprodução automática:', error.message);
-            // A reprodução automática pode falhar devido às políticas do navegador
-            // A interação do usuário pode ser necessária para iniciar a reprodução
-            // Adicionamos um botão de reprodução para iOS
-            btnPlayToggle.style.display = 'block';
-        });
+        btnPlayToggle.style.display = 'block';
     };
     audio.ondurationchange = showTimeDuration;
     audio.onended = () => (audio.currentTime = 0);
