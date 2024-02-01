@@ -13,6 +13,14 @@ audio.volume = 1.0; // Adjust as needed
 const btnPlayToggle = audioPlayer.querySelector(".btn-play");
 const slider = audioPlayer.querySelector("input[type='range']");
 
+function setMessageDate() {
+    const currentDateTime = new Date().toISOString().substring(11, 16);
+    audioPlayer.style.setProperty("--player-current-date-time", `'${currentDateTime}'`);
+}
+
+// Call setMessageDate to set the initial time
+setMessageDate();
+
 function formatTimeToDisplay(seconds) {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = Math.floor(seconds % 60);
