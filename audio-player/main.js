@@ -7,21 +7,22 @@ const audioPlayer = document.getElementById('audio-player');
 document.getElementById('audio-avatar').src = avatar_url;
 const audio = new Audio(audio_url);
 
-// Configurar o volume inicial (0.0 mudo até 1.0 máximo)
-audio.volume = 1.0; // Ajuste conforme necessário
+// Set the volume (0.0 for mute, 1.0 for maximum)
+audio.volume = 1.0; // Adjust as needed
 
 const btnPlayToggle = audioPlayer.querySelector(".btn-play");
 const slider = audioPlayer.querySelector("input[type='range']");
 
 function formatTimeToDisplay(seconds) {
-    const milliseconds = seconds * 1000;
-    return new Date(milliseconds).toISOString().substring(14, 19);
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
 }
 
 function handlePlayButton() {
     if (audio.paused) {
         audio.play().catch(error => {
-            console.error('Erro ao reproduzir áudio:', error.message);
+            console.error('Error playing audio:', error.message);
         });
     } else {
         audio.pause();
@@ -58,16 +59,15 @@ function start() {
 
     audio.onplay = () => {
         audioPlayer.classList.add("playing");
-        btnPlayToggle.textContent = 'Pause'; // Atualiza o texto do botão para 'Pause' quando o áudio começa a tocar
+        btnPlayToggle.textContent = 'Pause';
     };
     audio.onpause = () => {
         audioPlayer.classList.remove("playing");
-        btnPlayToggle.textContent = 'Play'; // Atualiza o texto do botão para 'Play' quando o áudio é pausado
+        btnPlayToggle.textContent = 'Play';
     };
     audio.onloadeddata = () => {
-        // Show play button immediately upon audio data load
-        audioPlayer.classList.remove("loading");
-        btnPlayToggle.style.display = 'block';
+        showTimeDuration();
+        btnPlayToggle.style.display = 'block'; // Show play button on iOS
     };
     audio.ondurationchange = showTimeDuration;
     audio.onended = () => (audio.currentTime = 0);
