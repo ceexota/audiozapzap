@@ -1,0 +1,16 @@
+Uri: https://adapta.click/audio-player/?avatar=/assets/avatar.webp&audio=/assets/introducao.mp3
+File Name: C:\Downloaded Web Sites\adapta.click\audio-player\index.htm
+Content Type: text/html
+
+Uri: https://adapta.click/audio-player/main.js
+File Name: C:\Downloaded Web Sites\adapta.click\audio-player\main.js
+Content Type: application/x-javascript
+
+Uri: https://adapta.click/audio-player/style.css
+File Name: C:\Downloaded Web Sites\adapta.click\audio-player\style.css
+Content Type: text/css
+
+Uri: https://fonts.gstatic.com/s/materialicons/v140/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2
+File Name: C:\Downloaded Web Sites\adapta.click\s\materialicons\v140\flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2
+Content Type: font/woff2
+

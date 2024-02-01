@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+	<div id="audio-player" class="audio-player mine">
+		<div class="user">
+			<img id="audio-avatar" src="avatar.png" />
+			<span class="material-icons">mic</span>
+		</div>
+		<div class="player">
+			<button type="button" class="btn-play">
+				<span id="play-button" class="material-icons icon-play">play_arrow</span>
+				<span class="material-icons icon-pause">pause</span>
+				<span class="material-icons icon-loop">loop</span>
+			</button>
+			<div class="timeline">
+				<div class="line">
+					<input dir="ltr" type="range" min="0" max="100" value="0">
+				</div>
+				<div class="data">
+					<div class="current-time"></div>
+					<div class="time">
+						<span class="material-icons">done_all</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="main.js"></script>
+
+</html>
